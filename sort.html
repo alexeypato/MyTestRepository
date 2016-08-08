@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Сортировка Шелла</title>
+	<meta charset="utf-8">
+</head>
+<body>
+
+<script type="text/javascript">
+
+function shuffle(array) {
+  var currentIndex = array.length;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+    
+    array[currentIndex - 1] = Math.floor(Math.random() * currentIndex * 10);
+    currentIndex -= 1;
+  }
+
+  return array;
+}
+
+var arr = [];
+for (var i = 0; i < 50; i++)
+  arr.push(i);
+
+shuffle(arr);
+
+document.write(arr.join (' '));
+
+arr.sort();
+
+document.write("<br>" + arr.join (' '));
+
+</script>
+
+</body>
+</html>
