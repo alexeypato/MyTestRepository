@@ -1,0 +1,93 @@
+.class_1 {
+    text-align: left; 
+    color: white;
+    background-color: darkcyan;
+}
+
+table {
+	width: auto;
+    height: auto;
+    border-collapse: collapse;
+    border: 2px solid black;
+    font-weight: bold;
+    font-family: Tahoma;
+    font-style: italic;
+}
+
+td {
+    padding: 5px;
+    padding-right: 10px;
+    border: 1px solid lightgray;
+    color: brown;
+    background-color: lightyellow;
+}
+
+th {
+    padding: 10px;
+    border: 1px solid black;
+    color: darkblue;
+    background-color: lightcyan;
+}
+
+caption {
+    margin-bottom: 10px;
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+.p-absolute {
+    padding: 20px;
+    background-color: rgba(0, 255, 0, 0.25);
+    position: absolute;
+    left: 100px;
+    bottom: 200px;
+}
+
+div {
+    margin-bottom: 15px;
+    padding: 10px 25px 10px 25px;
+    background-color: #dff0d8;
+}
+
+.left-column {
+    width: 50%;
+    min-height: 100px;
+    background-color: #fcf8e3;
+    float: left;
+}
+
+.right-column {
+    width: 25%;
+    min-height: 100px;
+    background-color: #d9edf7;
+    float: right;
+}
+
+.footer {
+    clear: both;
+}
+
+.nice-box {
+    border-radius: 5px;
+    box-shadow: 3px 3px 4px #cccccc;
+}
+
+a:link { ... }
+a:visited { ... }
+a:hover { ... }
+a:active { ... }
+input:focus { ... }
+
+К наследуемым свойствам относятся в первую очередь свойства, определяющие параметры отображения текста:
+font-size, font-family, font-style, font-weight, color, text-align, text-transform, text-indent, line-height, letter-spacing, word-spacing, white-space, direction и т. д.
+list-style, cursor, visibility, border-collapse
+
+Не наследуемые:
+background, border, padding, margin, width, height, position и др.
+
+
+white-space:
+nowrap — отображает весь текст одной строкой без переносов;
+pre — сохраняет пробелы и переносы как в исходном коде аналогично тегу <pre>;
+pre-wrap — работает как значение pre, но добавляет автоматические переносы, если текст не помещается в контейнер;
+normal — режим по умолчанию.
