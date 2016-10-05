@@ -91,3 +91,18 @@ nowrap — отображает весь текст одной строкой б
 pre — сохраняет пробелы и переносы как в исходном коде аналогично тегу <pre>;
 pre-wrap — работает как значение pre, но добавляет автоматические переносы, если текст не помещается в контейнер;
 normal — режим по умолчанию.
+
+
+background-color: #2ecc71;
+background-image: url("/assets/course13/cat_box.png");
+background-repeat: no-repeat;
+background-position: 50% 50%
+background-attachment: fixed;
+
+
+Дополнительное оформление текста можно задать с помощью свойства text-decoration. Его значения:
+
+underline — подчеркивание;
+line-through — зачеркивание;
+overline — черта сверху;
+none — убирает вышеперечисленные эффекты.

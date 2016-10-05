@@ -1,8 +1,9 @@
 SA T6hjm*UI
 
+http://wladm.narod.ru/C_Sharp/comexcel.html
 
-SELECT	ISNULL(round(sum(dbo.getTrueSumm(1, dokttn.tip_preskgp, dokttn.datattn, ttnMain.summa)), 2), 0) 
-		as 'Сумма за I период',
+SELECT	ISNULL(round(sum(dbo.getTrueSumm(1, dokttn.tip_preskgp, dokttn.datattn, ttnMain.summa, ttn.id_ttn)), 2), 0) 
+		as 'РЎСѓРјРјР° Р·Р° I РїРµСЂРёРѕРґ',
 		YEAR(dokttn.datattn), 
 		MONTH(dokttn.datattn)
 
@@ -16,8 +17,8 @@ WHERE   (dokttn.status='prov')
         and (country.id_country != '1') 
 		and (dokttn.id_orgpol != '1')
 		and (dokttn.fiosotr != '1')
-		and (dokttn.tipttn = 'Реализация по комиссии')
-		and (products.tip = 'Продукция технического назначения')
+		and (dokttn.tipttn = 'Р РµР°Р»РёР·Р°С†РёСЏ РїРѕ РєРѕРјРёСЃСЃРёРё')
+		and (products.tip = 'РџСЂРѕРґСѓРєС†РёСЏ С‚РµС…РЅРёС‡РµСЃРєРѕРіРѕ РЅР°Р·РЅР°С‡РµРЅРёСЏ')
         and (ttnMain.id_product != '1') 
 		and (dokttn.datattn BETWEEN '01/01/2015' AND '30/06/2016 23:59:59')
 
@@ -29,15 +30,15 @@ ORDER BY   YEAR(dokttn.datattn), MONTH(dokttn.datattn)
 SELECT	ttnMain.id_product as ID,
 		(SELECT dbo.products.nomer_product
 		FROM dbo.products
-		WHERE dbo.products.id_product = ttnMain.id_product) as 'Номер изделия',
+		WHERE dbo.products.id_product = ttnMain.id_product) as 'РќРѕРјРµСЂ РёР·РґРµР»РёСЏ',
 
 		(SELECT dbo.products.name_kratkoe
 		FROM dbo.products
-		WHERE dbo.products.id_product = ttnMain.id_product) as 'Краткое название изделия',
+		WHERE dbo.products.id_product = ttnMain.id_product) as 'РљСЂР°С‚РєРѕРµ РЅР°Р·РІР°РЅРёРµ РёР·РґРµР»РёСЏ',
 
 		(SELECT dbo.products.name_product
 		FROM dbo.products
-		WHERE dbo.products.id_product = ttnMain.id_product) as 'Название изделия',   
+		WHERE dbo.products.id_product = ttnMain.id_product) as 'РќР°Р·РІР°РЅРёРµ РёР·РґРµР»РёСЏ',   
 
 		ISNULL((SELECT sum(kolvo)
 				FROM ttn INNER JOIN 
@@ -49,11 +50,11 @@ SELECT	ttnMain.id_product as ID,
 					and (country.id_country != '1') 
 					and (dokttn.id_orgpol != '1')
 					and (dokttn.fiosotr != '1')
-					and (dokttn.tipttn = 'Простая')
-					and (products.tip = 'Продукция технического назначения')
+					and (dokttn.tipttn = 'РџСЂРѕСЃС‚Р°СЏ')
+					and (products.tip = 'РџСЂРѕРґСѓРєС†РёСЏ С‚РµС…РЅРёС‡РµСЃРєРѕРіРѕ РЅР°Р·РЅР°С‡РµРЅРёСЏ')
 					and (ttn.id_product = ttnMain.id_product) 
 					and (dokttn.datattn BETWEEN '01/06/2016' AND '30/06/2016 23:59:59')), 0) 
-		as 'Кол-во за I период, шт.',
+		as 'РљРѕР»-РІРѕ Р·Р° I РїРµСЂРёРѕРґ, С€С‚.',
 
 		ISNULL((SELECT sum(kolvo)
 				FROM ttn INNER JOIN 
@@ -65,13 +66,13 @@ SELECT	ttnMain.id_product as ID,
 					and (country.id_country != '1') 
 					and (dokttn.id_orgpol != '1')
 					and (dokttn.fiosotr != '1')
-					and (dokttn.tipttn = 'Простая')
-					and (products.tip = 'Продукция технического назначения')
+					and (dokttn.tipttn = 'РџСЂРѕСЃС‚Р°СЏ')
+					and (products.tip = 'РџСЂРѕРґСѓРєС†РёСЏ С‚РµС…РЅРёС‡РµСЃРєРѕРіРѕ РЅР°Р·РЅР°С‡РµРЅРёСЏ')
 					and (ttn.id_product = ttnMain.id_product) 
 					and (dokttn.datattn BETWEEN '01/07/2016' AND '31/07/2016 23:59:59')), 0) 
-		as 'Кол-во за II период, шт.',
+		as 'РљРѕР»-РІРѕ Р·Р° II РїРµСЂРёРѕРґ, С€С‚.',
 		
-		ISNULL((SELECT round(sum(dbo.getTrueSumm(4, dokttn.tip_preskgp, dokttn.datattn, ttn.summa)), 2)
+		ISNULL((SELECT round(sum(dbo.getTrueSumm(4, dokttn.tip_preskgp, dokttn.datattn, ttn.summa, ttn.id_ttn)), 2)
 				FROM ttn INNER JOIN 
 					dokttn ON ttn.id_dokttn = dokttn.id_dokttn INNER JOIN 
 					products ON ttn.id_product = products.id_product INNER JOIN 
@@ -81,13 +82,13 @@ SELECT	ttnMain.id_product as ID,
 					and (country.id_country != '1') 
 					and (dokttn.id_orgpol != '1')
 					and (dokttn.fiosotr != '1')
-					and (dokttn.tipttn = 'Простая')
-					and (products.tip = 'Продукция технического назначения')
+					and (dokttn.tipttn = 'РџСЂРѕСЃС‚Р°СЏ')
+					and (products.tip = 'РџСЂРѕРґСѓРєС†РёСЏ С‚РµС…РЅРёС‡РµСЃРєРѕРіРѕ РЅР°Р·РЅР°С‡РµРЅРёСЏ')
 					and (ttn.id_product = ttnMain.id_product) 
 					and (dokttn.datattn BETWEEN '01/06/2016' AND '30/06/2016 23:59:59')), 0) 
-		as 'Сумма за I период',
+		as 'РЎСѓРјРјР° Р·Р° I РїРµСЂРёРѕРґ',
 
-		ISNULL((SELECT round(sum(dbo.getTrueSumm(4, dokttn.tip_preskgp, dokttn.datattn, ttn.summa)), 2)
+		ISNULL((SELECT round(sum(dbo.getTrueSumm(4, dokttn.tip_preskgp, dokttn.datattn, ttn.summa, ttn.id_ttn)), 2)
 				FROM ttn INNER JOIN 
 					dokttn ON ttn.id_dokttn = dokttn.id_dokttn INNER JOIN 
 					products ON ttn.id_product = products.id_product INNER JOIN 
@@ -97,11 +98,11 @@ SELECT	ttnMain.id_product as ID,
 					and (country.id_country != '1') 
 					and (dokttn.id_orgpol != '1')
 					and (dokttn.fiosotr != '1')
-					and (dokttn.tipttn = 'Простая')
-					and (products.tip = 'Продукция технического назначения')
+					and (dokttn.tipttn = 'РџСЂРѕСЃС‚Р°СЏ')
+					and (products.tip = 'РџСЂРѕРґСѓРєС†РёСЏ С‚РµС…РЅРёС‡РµСЃРєРѕРіРѕ РЅР°Р·РЅР°С‡РµРЅРёСЏ')
 					and (ttn.id_product = ttnMain.id_product) 
 					and (dokttn.datattn BETWEEN '01/07/2016' AND '31/07/2016 23:59:59')), 0) 
-		as 'Сумма за II период'
+		as 'РЎСѓРјРјР° Р·Р° II РїРµСЂРёРѕРґ'
 
 FROM    dbo.ttn as ttnMain INNER JOIN 
         dbo.dokttn ON ttnMain.id_dokttn = dbo.dokttn.id_dokttn INNER JOIN 
@@ -113,38 +114,38 @@ WHERE   (dokttn.status='prov')
         and (country.id_country != '1') 
 		and (dokttn.id_orgpol != '1')
 		and (dokttn.fiosotr != '1')
-		and (dokttn.tipttn = 'Простая')
-		and (products.tip = 'Продукция технического назначения')
+		and (dokttn.tipttn = 'РџСЂРѕСЃС‚Р°СЏ')
+		and (products.tip = 'РџСЂРѕРґСѓРєС†РёСЏ С‚РµС…РЅРёС‡РµСЃРєРѕРіРѕ РЅР°Р·РЅР°С‡РµРЅРёСЏ')
         and (ttnMain.id_product != '1') 
 		and (dokttn.datattn BETWEEN '01/06/2016' AND '31/07/2016 23:59:59')
 
 GROUP BY   ttnMain.id_product
-ORDER BY   'Название изделия', 'Номер изделия'
+ORDER BY   'РќР°Р·РІР°РЅРёРµ РёР·РґРµР»РёСЏ', 'РќРѕРјРµСЂ РёР·РґРµР»РёСЏ'
 
 
 
 
 
-FUNCTION [dbo].[getTrueSumm](@requiredCurrency bigint, @currentCurrency varchar(MAX), @date date, @summa float)
+ALTER FUNCTION [dbo].[getTrueSumm](@requiredCurrency bigint, @currentCurrency varchar(MAX), @date date, @summa float, @currentTTNID varchar(MAX))
 RETURNS float
 	BEGIN
 		DECLARE @tempSumm float = @summa
 
-		/****** Переводим в Белорусские рубли ******/
+		/****** РџРµСЂРµРІРѕРґРёРј РІ Р‘РµР»РѕСЂСѓСЃСЃРєРёРµ СЂСѓР±Р»Рё ******/
 		IF (@requiredCurrency = 1)
 		BEGIN
 
-			IF ((@currentCurrency = 'Отпускные белорусский руб.' 
-				or @currentCurrency = 'Розничные белорусский руб.'
-				or @currentCurrency = 'Цены для МАЗа') and @date < '01/07/2016')
+			IF ((@currentCurrency = 'РћС‚РїСѓСЃРєРЅС‹Рµ Р±РµР»РѕСЂСѓСЃСЃРєРёР№ СЂСѓР±.' 
+				or @currentCurrency = 'Р РѕР·РЅРёС‡РЅС‹Рµ Р±РµР»РѕСЂСѓСЃСЃРєРёР№ СЂСѓР±.'
+				or @currentCurrency = 'Р¦РµРЅС‹ РґР»СЏ РњРђР—Р°') and @date < '01/07/2016')
 			RETURN @summa/10000
 
-			IF (@currentCurrency = 'Отпускные белорусский руб.' 
-				or @currentCurrency = 'Розничные белорусский руб.'
-				or @currentCurrency = 'Цены для МАЗа')
+			IF (@currentCurrency = 'РћС‚РїСѓСЃРєРЅС‹Рµ Р±РµР»РѕСЂСѓСЃСЃРєРёР№ СЂСѓР±.' 
+				or @currentCurrency = 'Р РѕР·РЅРёС‡РЅС‹Рµ Р±РµР»РѕСЂСѓСЃСЃРєРёР№ СЂСѓР±.'
+				or @currentCurrency = 'Р¦РµРЅС‹ РґР»СЏ РњРђР—Р°')
 			RETURN @summa
 
-			IF (@currentCurrency = 'Отпускные российский руб.')
+			IF (@currentCurrency = 'РћС‚РїСѓСЃРєРЅС‹Рµ СЂРѕСЃСЃРёР№СЃРєРёР№ СЂСѓР±.')
 			BEGIN
 				SELECT @tempSumm = @summa * BAAZKIS.dbo.kyrsval.value_kyrsval
 				FROM BAAZKIS.dbo.kyrsval
@@ -156,7 +157,7 @@ RETURNS float
 				    RETURN @tempSumm
 			END
 
-			IF (@currentCurrency = 'Отпускные доллар США')
+			IF (@currentCurrency = 'РћС‚РїСѓСЃРєРЅС‹Рµ РґРѕР»Р»Р°СЂ РЎРЁРђ')
 			BEGIN
 				SELECT @tempSumm = @summa * BAAZKIS.dbo.kyrsval.value_kyrsval
 				FROM BAAZKIS.dbo.kyrsval
@@ -168,15 +169,32 @@ RETURNS float
 				    RETURN @tempSumm
 			END
 
+			IF (@currentCurrency = 'Р’Р°Р»СЋС‚Р°')
+			BEGIN
+				SELECT @tempSumm = @summa * BAAZKIS.dbo.kyrsval.value_kyrsval
+				FROM BAAZKIS.dbo.kyrsval
+				WHERE (BAAZKIS.dbo.kyrsval.date_kyrsval = @date and BAAZKIS.dbo.kyrsval.id_valuta = (SELECT dbo.docpreskyrantvaluta.id_valuta
+																									 FROM dbo.valuta INNER JOIN
+																										  dbo.docpreskyrantvaluta ON dbo.valuta.id_valuta = dbo.docpreskyrantvaluta.id_valuta INNER JOIN
+																										  dbo.ttn ON dbo.docpreskyrantvaluta.id_docpreskyrantvaluta = dbo.ttn.id_docpreskyrant INNER JOIN
+																									      dbo.dokttn ON dbo.ttn.id_dokttn = dbo.dokttn.id_dokttn
+																								     WHERE        (dbo.ttn.id_ttn = @currentTTNID)))
+
+				IF (@date < '01/07/2016') 
+				    RETURN @tempSumm/10000
+				ELSE 
+				    RETURN @tempSumm
+			END
+
 		END
 
-		/****** Переводим в Доллары США ******/
+		/****** РџРµСЂРµРІРѕРґРёРј РІ Р”РѕР»Р»Р°СЂС‹ РЎРЁРђ ******/
 		IF (@requiredCurrency = 2)
 		BEGIN
 
-			IF (@currentCurrency = 'Отпускные белорусский руб.' 
-				or @currentCurrency = 'Розничные белорусский руб.'
-				or @currentCurrency = 'Цены для МАЗа')
+			IF (@currentCurrency = 'РћС‚РїСѓСЃРєРЅС‹Рµ Р±РµР»РѕСЂСѓСЃСЃРєРёР№ СЂСѓР±.' 
+				or @currentCurrency = 'Р РѕР·РЅРёС‡РЅС‹Рµ Р±РµР»РѕСЂСѓСЃСЃРєРёР№ СЂСѓР±.'
+				or @currentCurrency = 'Р¦РµРЅС‹ РґР»СЏ РњРђР—Р°')
 			BEGIN
 				SELECT @tempSumm = @summa / BAAZKIS.dbo.kyrsval.value_kyrsval
 				FROM BAAZKIS.dbo.kyrsval
@@ -184,7 +202,7 @@ RETURNS float
 				RETURN @tempSumm
 			END
 
-			IF (@currentCurrency = 'Отпускные российский руб.')
+			IF (@currentCurrency = 'РћС‚РїСѓСЃРєРЅС‹Рµ СЂРѕСЃСЃРёР№СЃРєРёР№ СЂСѓР±.')
 			BEGIN
 				SELECT @tempSumm = @summa * BAAZKIS.dbo.kyrsval.value_kyrsval
 				FROM BAAZKIS.dbo.kyrsval
@@ -197,18 +215,108 @@ RETURNS float
 				RETURN @tempSumm
 			END
 
-			IF (@currentCurrency = 'Отпускные доллар США')
+			IF (@currentCurrency = 'Р’Р°Р»СЋС‚Р°')
+			BEGIN
+				SELECT @tempSumm = @summa * BAAZKIS.dbo.kyrsval.value_kyrsval
+				FROM BAAZKIS.dbo.kyrsval
+				WHERE (BAAZKIS.dbo.kyrsval.date_kyrsval = @date and BAAZKIS.dbo.kyrsval.id_valuta = (SELECT dbo.docpreskyrantvaluta.id_valuta
+																									 FROM dbo.valuta INNER JOIN
+																										  dbo.docpreskyrantvaluta ON dbo.valuta.id_valuta = dbo.docpreskyrantvaluta.id_valuta INNER JOIN
+																										  dbo.ttn ON dbo.docpreskyrantvaluta.id_docpreskyrantvaluta = dbo.ttn.id_docpreskyrant INNER JOIN
+																									      dbo.dokttn ON dbo.ttn.id_dokttn = dbo.dokttn.id_dokttn
+																								     WHERE        (dbo.ttn.id_ttn = @currentTTNID)))
+
+				SELECT @tempSumm = @tempSumm / BAAZKIS.dbo.kyrsval.value_kyrsval
+				FROM BAAZKIS.dbo.kyrsval
+				WHERE (BAAZKIS.dbo.kyrsval.date_kyrsval = @date and BAAZKIS.dbo.kyrsval.id_valuta = 2)
+
+				RETURN @tempSumm
+			END
+
+			IF (@currentCurrency = 'РћС‚РїСѓСЃРєРЅС‹Рµ РґРѕР»Р»Р°СЂ РЎРЁРђ')
 			RETURN @summa
 
 		END
 
-		/****** Переводим в Российские рубли ******/
+		/****** РџРµСЂРµРІРѕРґРёРј РІ EURO ******/
+		IF (@requiredCurrency = 3)
+		BEGIN
+
+			IF (@currentCurrency = 'РћС‚РїСѓСЃРєРЅС‹Рµ Р±РµР»РѕСЂСѓСЃСЃРєРёР№ СЂСѓР±.' 
+				or @currentCurrency = 'Р РѕР·РЅРёС‡РЅС‹Рµ Р±РµР»РѕСЂСѓСЃСЃРєРёР№ СЂСѓР±.'
+				or @currentCurrency = 'Р¦РµРЅС‹ РґР»СЏ РњРђР—Р°')
+			BEGIN
+				SELECT @tempSumm = @summa / BAAZKIS.dbo.kyrsval.value_kyrsval
+				FROM BAAZKIS.dbo.kyrsval
+				WHERE (BAAZKIS.dbo.kyrsval.date_kyrsval = @date and BAAZKIS.dbo.kyrsval.id_valuta = @requiredCurrency)
+				RETURN @tempSumm
+			END
+
+			IF (@currentCurrency = 'РћС‚РїСѓСЃРєРЅС‹Рµ СЂРѕСЃСЃРёР№СЃРєРёР№ СЂСѓР±.')
+			BEGIN
+				SELECT @tempSumm = @summa * BAAZKIS.dbo.kyrsval.value_kyrsval
+				FROM BAAZKIS.dbo.kyrsval
+				WHERE (BAAZKIS.dbo.kyrsval.date_kyrsval = @date and BAAZKIS.dbo.kyrsval.id_valuta = 4)
+
+				SELECT @tempSumm = @tempSumm / BAAZKIS.dbo.kyrsval.value_kyrsval
+				FROM BAAZKIS.dbo.kyrsval
+				WHERE (BAAZKIS.dbo.kyrsval.date_kyrsval = @date and BAAZKIS.dbo.kyrsval.id_valuta = @requiredCurrency)
+
+				RETURN @tempSumm
+			END
+
+			IF (@currentCurrency = 'РћС‚РїСѓСЃРєРЅС‹Рµ РґРѕР»Р»Р°СЂ РЎРЁРђ')
+			BEGIN
+				SELECT @tempSumm = @summa * BAAZKIS.dbo.kyrsval.value_kyrsval
+				FROM BAAZKIS.dbo.kyrsval
+				WHERE (BAAZKIS.dbo.kyrsval.date_kyrsval = @date and BAAZKIS.dbo.kyrsval.id_valuta = 2)
+
+				SELECT @tempSumm = @tempSumm / BAAZKIS.dbo.kyrsval.value_kyrsval
+				FROM BAAZKIS.dbo.kyrsval
+				WHERE (BAAZKIS.dbo.kyrsval.date_kyrsval = @date and BAAZKIS.dbo.kyrsval.id_valuta = @requiredCurrency)
+
+				RETURN @tempSumm
+			END
+
+			IF (@currentCurrency = 'Р’Р°Р»СЋС‚Р°')
+			BEGIN
+
+			    IF (@requiredCurrency <> (SELECT dbo.docpreskyrantvaluta.id_valuta
+									   FROM dbo.valuta INNER JOIN
+											dbo.docpreskyrantvaluta ON dbo.valuta.id_valuta = dbo.docpreskyrantvaluta.id_valuta INNER JOIN
+											dbo.ttn ON dbo.docpreskyrantvaluta.id_docpreskyrantvaluta = dbo.ttn.id_docpreskyrant INNER JOIN
+											dbo.dokttn ON dbo.ttn.id_dokttn = dbo.dokttn.id_dokttn
+									   WHERE        (dbo.ttn.id_ttn = @currentTTNID)))
+			    BEGIN
+					SELECT @tempSumm = @summa * BAAZKIS.dbo.kyrsval.value_kyrsval
+					FROM BAAZKIS.dbo.kyrsval
+					WHERE (BAAZKIS.dbo.kyrsval.date_kyrsval = @date and BAAZKIS.dbo.kyrsval.id_valuta = (SELECT dbo.docpreskyrantvaluta.id_valuta
+																									 FROM dbo.valuta INNER JOIN
+																										  dbo.docpreskyrantvaluta ON dbo.valuta.id_valuta = dbo.docpreskyrantvaluta.id_valuta INNER JOIN
+																										  dbo.ttn ON dbo.docpreskyrantvaluta.id_docpreskyrantvaluta = dbo.ttn.id_docpreskyrant INNER JOIN
+																									      dbo.dokttn ON dbo.ttn.id_dokttn = dbo.dokttn.id_dokttn
+																								     WHERE        (dbo.ttn.id_ttn = @currentTTNID)))
+
+					SELECT @tempSumm = @tempSumm / BAAZKIS.dbo.kyrsval.value_kyrsval
+					FROM BAAZKIS.dbo.kyrsval
+					WHERE (BAAZKIS.dbo.kyrsval.date_kyrsval = @date and BAAZKIS.dbo.kyrsval.id_valuta = @requiredCurrency)
+
+					RETURN @tempSumm
+			    END
+
+			    ELSE
+					RETURN @summa
+			END
+
+		END
+
+		/****** РџРµСЂРµРІРѕРґРёРј РІ Р РѕСЃСЃРёР№СЃРєРёРµ СЂСѓР±Р»Рё ******/
 		IF (@requiredCurrency = 4)
 		BEGIN
 
-			IF (@currentCurrency = 'Отпускные белорусский руб.' 
-				or @currentCurrency = 'Розничные белорусский руб.'
-				or @currentCurrency = 'Цены для МАЗа')
+			IF (@currentCurrency = 'РћС‚РїСѓСЃРєРЅС‹Рµ Р±РµР»РѕСЂСѓСЃСЃРєРёР№ СЂСѓР±.' 
+				or @currentCurrency = 'Р РѕР·РЅРёС‡РЅС‹Рµ Р±РµР»РѕСЂСѓСЃСЃРєРёР№ СЂСѓР±.'
+				or @currentCurrency = 'Р¦РµРЅС‹ РґР»СЏ РњРђР—Р°')
 			BEGIN
 				SELECT @tempSumm = @summa / BAAZKIS.dbo.kyrsval.value_kyrsval
 				FROM BAAZKIS.dbo.kyrsval
@@ -216,14 +324,31 @@ RETURNS float
 				RETURN @tempSumm
 			END
 
-			IF (@currentCurrency = 'Отпускные российский руб.')
+			IF (@currentCurrency = 'РћС‚РїСѓСЃРєРЅС‹Рµ СЂРѕСЃСЃРёР№СЃРєРёР№ СЂСѓР±.')
 			RETURN @summa
 
-			IF (@currentCurrency = 'Отпускные доллар США')
+			IF (@currentCurrency = 'РћС‚РїСѓСЃРєРЅС‹Рµ РґРѕР»Р»Р°СЂ РЎРЁРђ')
 			BEGIN
 				SELECT @tempSumm = @summa * BAAZKIS.dbo.kyrsval.value_kyrsval
 				FROM BAAZKIS.dbo.kyrsval
 				WHERE (BAAZKIS.dbo.kyrsval.date_kyrsval = @date and BAAZKIS.dbo.kyrsval.id_valuta = 2)
+
+				SELECT @tempSumm = @tempSumm / BAAZKIS.dbo.kyrsval.value_kyrsval
+				FROM BAAZKIS.dbo.kyrsval
+				WHERE (BAAZKIS.dbo.kyrsval.date_kyrsval = @date and BAAZKIS.dbo.kyrsval.id_valuta = 4)
+				RETURN @tempSumm
+			END
+
+			IF (@currentCurrency = 'Р’Р°Р»СЋС‚Р°')
+			BEGIN
+				SELECT @tempSumm = @summa * BAAZKIS.dbo.kyrsval.value_kyrsval
+				FROM BAAZKIS.dbo.kyrsval
+				WHERE (BAAZKIS.dbo.kyrsval.date_kyrsval = @date and BAAZKIS.dbo.kyrsval.id_valuta = (SELECT dbo.docpreskyrantvaluta.id_valuta
+																									 FROM dbo.valuta INNER JOIN
+																										  dbo.docpreskyrantvaluta ON dbo.valuta.id_valuta = dbo.docpreskyrantvaluta.id_valuta INNER JOIN
+																										  dbo.ttn ON dbo.docpreskyrantvaluta.id_docpreskyrantvaluta = dbo.ttn.id_docpreskyrant INNER JOIN
+																									      dbo.dokttn ON dbo.ttn.id_dokttn = dbo.dokttn.id_dokttn
+																								     WHERE        (dbo.ttn.id_ttn = @currentTTNID)))
 
 				SELECT @tempSumm = @tempSumm / BAAZKIS.dbo.kyrsval.value_kyrsval
 				FROM BAAZKIS.dbo.kyrsval
