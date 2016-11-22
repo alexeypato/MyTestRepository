@@ -4,8 +4,12 @@
 		<title>Моя личная страничка!</title>
 		<meta charset="utf-8">
 		<link href="_style.css" rel="stylesheet">
-		<link rel="import" href="import/menu.html">
 		<script src="js/jquery-3.1.1.min.js"></script>
+		<script>
+    		$(function(){
+        		$("#menu").load("import/menu.html"); 
+    		});
+   		</script>
 		<script>
 		$(document).ready(function(){
 			$('.main-menu li:has(ul)').hover(
@@ -46,7 +50,7 @@
 			</ul>	
 			<div class="menu-bottom-margin"></div> -->
 
-			<?php include("import/menu.html");?>
+			<div id="menu"></div>
 		</header>
 
 		<div class="maining-png" align="center">
