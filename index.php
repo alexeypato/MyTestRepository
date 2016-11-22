@@ -4,14 +4,35 @@
 		<title>Моя личная страничка!</title>
 		<meta charset="utf-8">
 		<link href="_style.css" rel="stylesheet">
+		<link rel="import" href="import/menu.html">
 		<script src="js/jquery-3.1.1.min.js"></script>
+		<script>
+		$(document).ready(function(){
+			$('.main-menu li:has(ul)').hover(
+				function(){
+					$(this).children('.sub-menu').show();
+				},
+				function(){
+					$(this).children('.sub-menu').hide();
+				}
+			);
+		});
+	</script>
 	</head>
-
+	
 	<body>
 		<header>
-			<ul class="main-menu">
+			<!-- <ul class="main-menu">
 				<li><a href="index.html">Главная</a></li>		
-				<li><a href="html/resume.html">Резюме</a></li>	
+				<li><a href="html/resume.html">Резюме</a>
+				<ul class="sub-menu">
+					<li><a href="#">Школа</a></li>
+					<li><a href="#">Университет</a></li>
+					<li><a href="#">Работа</a></li>
+					<li><a href="#">Армия</a></li>
+					<li><a href="#">Девушка</a></li>
+				</ul>
+				</li>
 				<li><a href="html/example.html">Примеры</a></li>
 				<li><a href="#">Об авторе</a>
 				<ul class="sub-menu">
@@ -23,18 +44,22 @@
 				</ul>
 				</li>
 			</ul>	
-			<div class="menu-bottom-margin"></div>
+			<div class="menu-bottom-margin"></div> -->
+
+			<?php include("import/menu.html");?>
 		</header>
 
 		<div class="maining-png" align="center">
-			<tr>
-				<td>
-					<img src="https://minergate.com/widget/56cc3922477860ee.png"/>
-				</td>
-				<td>
-					<img src="https://minergate.com/widget/2b7e7b06599357d1.png"/>
-				</td>
-			</tr>
+			<table>
+				<tr>
+					<td>
+						<img src="https://minergate.com/widget/56cc3922477860ee.png"/>
+					</td>
+					<td>
+						<img src="https://minergate.com/widget/2b7e7b06599357d1.png"/>
+					</td>
+				</tr>
+			</table>
 		</div>
 
 		<div class="main-conteiner" align="center">
@@ -54,6 +79,10 @@
 		</footer>
 	<body>
 </html>
+
+
+
+
 
 
 
