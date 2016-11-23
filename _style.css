@@ -29,7 +29,7 @@ h1, p {
 	padding: 0px 10px 0px 10px;
 }
 
-.main-menu {
+header .main-menu {
 	list-style: none;
 	padding: 0px;
 	margin: 0px;
@@ -37,11 +37,11 @@ h1, p {
 	height: 50px;
 }
 
-ul {
+header ul {
 	text-align: center;
 }
 
-.main-menu > li {
+header .main-menu > li {
 	position: relative;
 	display: inline-block;
 	width: 150px;
@@ -53,24 +53,46 @@ ul {
 	border: 1px solid #2C3E50;
 }
 
-.main-menu > li:hover{
+header .main-menu > li:hover{
 	background-color: #95A5A6;
 }
 
-.main-menu a {
+.side-bar .main-menu > li:hover{
+	background-color: #95A5A6;
+}
+
+header .main-menu a {
 	display: block;
 	padding: 5px 10px;
 	color: #34495E;
 	text-decoration: none;
 }
 
-.main-menu .sub-menu {
+.side-bar .main-menu a {
+	display: block;
+	padding: 5px 10px;
+	color: #34495E;
+	text-decoration: none;
+}
+
+header .main-menu .sub-menu {
 	position: absolute;
 	list-style: none;
+}
+
+.main-menu .sub-menu {
 	display: none;
 }
 
-.main-menu .sub-menu li{
+.side-bar .main-menu .sub-menu {
+	position: relative;
+	list-style: none;
+	left: 150px;
+	top: -30px;
+
+}
+
+header .main-menu .sub-menu li{
 	background-color: #BDC3C7;
 	border-radius: 5px;
 	border: 1px solid #2C3E50;
@@ -78,7 +100,15 @@ ul {
 	width: 150px;
 }
 
-.main-menu .sub-menu li:hover{
+.side-bar .main-menu .sub-menu li{
+	border: 1px solid #2C3E50;
+}
+
+header .main-menu .sub-menu li:hover{
+	background-color: #95A5A6;
+}
+
+.side-bar .main-menu .sub-menu li:hover{
 	background-color: #95A5A6;
 }
 
@@ -112,4 +142,18 @@ footer {
 	border-radius: 10px;
 	border: 1px solid #2C3E50;
 	margin-top: 5px;
+}
+
+.side-bar {
+	position: absolute;
+	top: 30%;
+	left: -130px;
+}
+
+.side-bar .main-menu > li {
+	width: 150px;
+	max-height: 30px;
+	text-align: center;
+	background-color: #BDC3C7;
+	border: 1px solid #2C3E50;
 }
