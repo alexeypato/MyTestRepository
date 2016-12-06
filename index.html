@@ -4,11 +4,15 @@
 		<title>Моя личная страничка!</title>
 		<meta charset="utf-8">
 		<link href="_style.css" rel="stylesheet">
+		<link href="smartmenus-1.0.1\css\sm-core-css.css" rel="stylesheet">
+		<link href="smartmenus-1.0.1\css\sm-blue\sm-blue.css" rel="stylesheet">
+		<link href="smartmenus-1.0.1\css\sm-mint\sm-mint.css" rel="stylesheet">
 		<script src="js/jquery-3.1.1.min.js"></script>
 		<script src="js/jquery-ui.min.js"></script>
+		<script src="smartmenus-1.0.1/jquery.smartmenus.min.js"></script>
 
 		<script>
-			$(document).ready(function(){
+			$(document).ready(function() {
 				$('.main-menu li:has(ul)').hover(
 				function(){
 					$(this).children('.sub-menu').show();
@@ -17,11 +21,7 @@
 					$(this).children('.sub-menu').hide();
 				}
 				);
-			});
-		</script>
 
-		<script>
-			$(document).ready(function() {
 				$('.side-bar').hover(
 				function(){
 					$(this).stop().animate(
@@ -40,16 +40,37 @@
 					1500,
 					'easeOutBounce'
 				);
-				}
+				});
+
+				$('#indexPhoto img').each(function(){
+				var newPhoto = new Image();
+				newPhoto.src = 'img/shcool.jpg';
+				var oldPhoto = $(this).attr('src');
+				$(this).hover(
+					function(){
+						$(this).attr('src', newPhoto.src);
+					},
+					function(){
+						$(this).attr('src', oldPhoto);
+					}
 				);
+				});
+
+				$('.sm').smartmenus({
+					showFunction: function($ul, complete) {
+						$ul.slideDown(250, complete);
+					},
+					hideFunction: function($ul, complete) {
+						$ul.slideUp(250, complete);
+					}
+				});
 			});
 		</script>
-
 	</head>
 	
 	<body>
 		<header>
-			<ul class="main-menu">
+			<!-- <ul class="main-menu">
 				<li><a href="index.html">Главная</a></li>		
 				<li><a href="html/resume.html">Резюме</a>
 				<ul class="sub-menu">
@@ -71,10 +92,35 @@
 				</ul>
 				</li>
 			</ul>	
+			<div class="menu-bottom-margin"></div> -->
+
+			<ul class="sm sm-blue">
+				<li><a href="index.html">Главная</a></li>		
+				<li><a href="html/resume.html">Резюме</a>
+				<ul>
+					<li><a href="#">Школа</a></li>
+					<li><a href="#">Университет</a></li>
+					<li><a href="#">Работа</a></li>
+					<li><a href="#">Армия</a></li>
+					<li><a href="#">Девушка</a></li>
+				</ul>
+				</li>
+				<li><a href="html/example.html">Примеры</a></li>
+				<li><a href="#">Об авторе</a>
+				<ul>
+					<li><a href="#">Школа</a></li>
+					<li><a href="#">Университет</a></li>
+					<li><a href="#">Работа</a></li>
+					<li><a href="#">Армия</a></li>
+					<li><a href="#">Девушка</a></li>
+				</ul>
+				</li>
+			</ul>	
 			<div class="menu-bottom-margin"></div>
+
 		</header>
 
-		<div class="side-bar">
+		<!-- <div class="side-bar">
 			<ul class="main-menu">
 				<li><a href="index.html">Главная</a></li>		
 				<li><a href="html/resume.html">Резюме</a>
@@ -97,26 +143,42 @@
 				</ul>
 				</li>
 			</ul>
+		</div> -->
+
+		<div class="side-bar">
+			<ul class="sm sm-mint">
+				<li><a href="index.html">Главная</a></li>		
+				<li><a href="html/resume.html">Резюме</a>
+				<ul>
+					<li><a href="#">Школа</a></li>
+					<li><a href="#">Университет</a></li>
+					<li><a href="#">Работа</a></li>
+					<li><a href="#">Армия</a></li>
+					<li><a href="#">Девушка</a></li>
+				</ul>
+				</li>
+				<li><a href="html/example.html">Примеры</a></li>
+				<li><a href="#">Об авторе</a>
+				<ul>
+					<li><a href="#">Школа</a></li>
+					<li><a href="#">Университет</a></li>
+					<li><a href="#">Работа</a></li>
+					<li><a href="#">Армия</a></li>
+					<li><a href="#">Девушка</a></li>
+				</ul>
+				</li>
+			</ul>
 		</div>
 
 		<div class="maining-png" align="center">
-			<table>
-				<tr>
-					<td>
-						<img src="https://minergate.com/widget/56cc3922477860ee.png"/>
-					</td>
-					<td>
-						<img src="https://minergate.com/widget/2b7e7b06599357d1.png"/>
-					</td>
-				</tr>
-			</table>
+			<img src="https://minergate.com/widget/2b7e7b06599357d1.png"/>
 		</div>
 
 		<div class="main-conteiner" align="center">
-			<div class="container-white">
+			<div  id="indexPhoto" class="container-white">
 
 				<p style="text-align: center;">
-					<img src="img/index.jpg" width="100%">
+					<img src="img/index.jpg" width="100%" >
 				</p>
 
 			</div>
