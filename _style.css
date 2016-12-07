@@ -29,7 +29,7 @@ h1, p {
 	padding: 0px 10px 0px 10px;
 }
 
-header .main-menu {
+/*header .main-menu {
 	list-style: none;
 	padding: 0px;
 	margin: 0px;
@@ -110,7 +110,7 @@ header .main-menu .sub-menu li:hover{
 
 .side-bar .main-menu .sub-menu li:hover{
 	background-color: #95A5A6;
-}
+}*/
 
 /*.main-menu li:hover ul{
 	display: block;
@@ -147,13 +147,13 @@ footer {
 .side-bar {
 	position: absolute;
 	top: 30%;
-	left: -130px;
+	left: -100px;
 }
 
-.side-bar .main-menu > li {
+/*.side-bar .main-menu > li {
 	width: 150px;
 	max-height: 30px;
 	text-align: center;
 	background-color: #BDC3C7;
 	border: 1px solid #2C3E50;
-}
+}*/

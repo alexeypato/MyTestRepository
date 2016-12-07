@@ -5,23 +5,24 @@
 		<meta charset="utf-8">
 		<link href="_style.css" rel="stylesheet">
 		<link href="smartmenus-1.0.1\css\sm-core-css.css" rel="stylesheet">
-		<link href="smartmenus-1.0.1\css\sm-blue\sm-blue.css" rel="stylesheet">
-		<link href="smartmenus-1.0.1\css\sm-mint\sm-mint.css" rel="stylesheet">
+		<link href="smartmenus-1.0.1\css\sm-blue-my.css" rel="stylesheet">
+		<link href="smartmenus-1.0.1\css\sm-simple-my.css" rel="stylesheet">
 		<script src="js/jquery-3.1.1.min.js"></script>
 		<script src="js/jquery-ui.min.js"></script>
 		<script src="smartmenus-1.0.1/jquery.smartmenus.min.js"></script>
-
+<style type="text/css">
+	@media (min-width: 768px) {
+		#main-nav {
+			line-height: 0;
+			text-align: center;
+		}
+		#main-menu {
+			display: inline-block;
+		}
+	}
+</style>
 		<script>
 			$(document).ready(function() {
-				$('.main-menu li:has(ul)').hover(
-				function(){
-					$(this).children('.sub-menu').show();
-				},
-				function(){
-					$(this).children('.sub-menu').hide();
-				}
-				);
-
 				$('.side-bar').hover(
 				function(){
 					$(this).stop().animate(
@@ -35,7 +36,7 @@
 				function(){
 					$(this).stop().animate(
 					{
-						left: '-130px'
+						left: '-100px'
 					},
 					1500,
 					'easeOutBounce'
@@ -70,83 +71,36 @@
 	
 	<body>
 		<header>
-			<!-- <ul class="main-menu">
-				<li><a href="index.html">Главная</a></li>		
-				<li><a href="html/resume.html">Резюме</a>
-				<ul class="sub-menu">
-					<li><a href="#">Школа</a></li>
-					<li><a href="#">Университет</a></li>
-					<li><a href="#">Работа</a></li>
-					<li><a href="#">Армия</a></li>
-					<li><a href="#">Девушка</a></li>
+			<nav id="main-nav" role="navigation">
+				<ul id="main-menu" class="sm sm-blue">
+					<li><a href="index.html">Главная</a></li>		
+					<li><a href="html/resume.html">Резюме</a>
+					<ul>
+						<li><a href="#">Школа</a></li>
+						<li><a href="#">Университет</a></li>
+						<li><a href="#">Работа</a></li>
+						<li><a href="#">Армия</a></li>
+						<li><a href="#">Девушка</a></li>
+					</ul>
+					</li>
+					<li><a href="html/example.html">Примеры</a></li>
+					<li><a href="#">Об авторе</a>
+					<ul>
+						<li><a href="#">Школа</a></li>
+						<li><a href="#">Университет</a></li>
+						<li><a href="#">Работа</a></li>
+						<li><a href="#">Армия</a></li>
+						<li><a href="#">Девушка</a></li>
+					</ul>
+					</li>
 				</ul>
-				</li>
-				<li><a href="html/example.html">Примеры</a></li>
-				<li><a href="#">Об авторе</a>
-				<ul class="sub-menu">
-					<li><a href="#">Школа</a></li>
-					<li><a href="#">Университет</a></li>
-					<li><a href="#">Работа</a></li>
-					<li><a href="#">Армия</a></li>
-					<li><a href="#">Девушка</a></li>
-				</ul>
-				</li>
-			</ul>	
-			<div class="menu-bottom-margin"></div> -->
+			</nav>
 
-			<ul class="sm sm-blue">
-				<li><a href="index.html">Главная</a></li>		
-				<li><a href="html/resume.html">Резюме</a>
-				<ul>
-					<li><a href="#">Школа</a></li>
-					<li><a href="#">Университет</a></li>
-					<li><a href="#">Работа</a></li>
-					<li><a href="#">Армия</a></li>
-					<li><a href="#">Девушка</a></li>
-				</ul>
-				</li>
-				<li><a href="html/example.html">Примеры</a></li>
-				<li><a href="#">Об авторе</a>
-				<ul>
-					<li><a href="#">Школа</a></li>
-					<li><a href="#">Университет</a></li>
-					<li><a href="#">Работа</a></li>
-					<li><a href="#">Армия</a></li>
-					<li><a href="#">Девушка</a></li>
-				</ul>
-				</li>
-			</ul>	
 			<div class="menu-bottom-margin"></div>
-
 		</header>
 
-		<!-- <div class="side-bar">
-			<ul class="main-menu">
-				<li><a href="index.html">Главная</a></li>		
-				<li><a href="html/resume.html">Резюме</a>
-				<ul class="sub-menu">
-					<li><a href="#">Школа</a></li>
-					<li><a href="#">Университет</a></li>
-					<li><a href="#">Работа</a></li>
-					<li><a href="#">Армия</a></li>
-					<li><a href="#">Девушка</a></li>
-				</ul>
-				</li>
-				<li><a href="html/example.html">Примеры</a></li>
-				<li><a href="#">Об авторе</a>
-				<ul class="sub-menu">
-					<li><a href="#">Школа</a></li>
-					<li><a href="#">Университет</a></li>
-					<li><a href="#">Работа</a></li>
-					<li><a href="#">Армия</a></li>
-					<li><a href="#">Девушка</a></li>
-				</ul>
-				</li>
-			</ul>
-		</div> -->
-
 		<div class="side-bar">
-			<ul class="sm sm-mint">
+			<ul class="sm sm-vertical sm-simple">
 				<li><a href="index.html">Главная</a></li>		
 				<li><a href="html/resume.html">Резюме</a>
 				<ul>
