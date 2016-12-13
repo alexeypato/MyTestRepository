@@ -3,24 +3,25 @@
 	<head>
 		<title>Моя личная страничка!</title>
 		<meta charset="utf-8">
-		<link href="_style.css" rel="stylesheet">
+		<link href="css\_style.css" rel="stylesheet">
+		<link href="css\jquery-ui.min.css" rel="stylesheet">
 		<link href="smartmenus-1.0.1\css\sm-core-css.css" rel="stylesheet">
 		<link href="smartmenus-1.0.1\css\sm-blue-my.css" rel="stylesheet">
 		<link href="smartmenus-1.0.1\css\sm-simple-my.css" rel="stylesheet">
 		<script src="js/jquery-3.1.1.min.js"></script>
 		<script src="js/jquery-ui.min.js"></script>
 		<script src="smartmenus-1.0.1/jquery.smartmenus.min.js"></script>
-<style type="text/css">
-	@media (min-width: 768px) {
-		#main-nav {
-			line-height: 0;
-			text-align: center;
-		}
-		#main-menu {
-			display: inline-block;
-		}
-	}
-</style>
+		<style type="text/css">
+			@media (min-width: 768px) {
+				#main-nav {
+					line-height: 0;
+					text-align: center;
+				}
+				#main-menu {
+					display: inline-block;
+				}
+			}
+		</style>
 		<script>
 			$(document).ready(function() {
 				$('.side-bar').hover(
@@ -65,6 +66,29 @@
 						$ul.slideUp(250, complete);
 					}
 				});
+
+				$('#hello').dialog({
+					position : {
+						my : 'right top',
+						at : 'right top+5',
+						of : '.menu-bottom-margin'
+					},
+					buttons : {
+						"Точно!" : function(){
+
+							$(this).dialog('close');
+						},
+						"Точнее некуда!" : function(){
+
+							$(this).dialog('close');
+						}
+					},
+					hide : 'explode'
+				});
+
+				$('[title]').tooltip({
+					track: true
+				});
 			});
 		</script>
 	</head>
@@ -74,15 +98,7 @@
 			<nav id="main-nav" role="navigation">
 				<ul id="main-menu" class="sm sm-blue">
 					<li><a href="index.html">Главная</a></li>		
-					<li><a href="html/resume.html">Резюме</a>
-					<ul>
-						<li><a href="#">Школа</a></li>
-						<li><a href="#">Университет</a></li>
-						<li><a href="#">Работа</a></li>
-						<li><a href="#">Армия</a></li>
-						<li><a href="#">Девушка</a></li>
-					</ul>
-					</li>
+					<li><a href="html/resume.html">Резюме</a></li>
 					<li><a href="html/example.html">Примеры</a></li>
 					<li><a href="#">Об авторе</a>
 					<ul>
@@ -102,15 +118,7 @@
 		<div class="side-bar">
 			<ul class="sm sm-vertical sm-simple">
 				<li><a href="index.html">Главная</a></li>		
-				<li><a href="html/resume.html">Резюме</a>
-				<ul>
-					<li><a href="#">Школа</a></li>
-					<li><a href="#">Университет</a></li>
-					<li><a href="#">Работа</a></li>
-					<li><a href="#">Армия</a></li>
-					<li><a href="#">Девушка</a></li>
-				</ul>
-				</li>
+				<li><a href="html/resume.html">Резюме</a>></li>
 				<li><a href="html/example.html">Примеры</a></li>
 				<li><a href="#">Об авторе</a>
 				<ul>
@@ -125,7 +133,11 @@
 		</div>
 
 		<div class="maining-png" align="center">
-			<img src="https://minergate.com/widget/2b7e7b06599357d1.png"/>
+			<img src="https://minergate.com/widget/2b7e7b06599357d1.png"  title="Данные скоростей с MinerGate"/>
+		</div>
+
+		<div id="hello" title="Вова хочет получить фофан!">
+			<p>Точно выписать Вове фофан?</p>
 		</div>
 
 		<div class="main-conteiner" align="center">
