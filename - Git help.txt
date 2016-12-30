@@ -1,4 +1,4 @@
-git config --global user.name 'alexeypato' - задаем имя пользователя
+﻿git config --global user.name 'alexeypato' - задаем имя пользователя
 git config --global user.email alexeypato@gmail.com - задаем email пользователя
 git add 1.txt - добавляем файл в подготовленные, для дальнейшей фиксации
 git add . - добавляем все файлы в подготовленные, для дальнейшей фиксации
@@ -25,6 +25,7 @@ git branch -d hotFix - удаление ветки hotFix
 git merge bugFix - слияние веток
 
 git remote - просмотр удаленных репозиториев
+git remote rm origin - удаление URL удаленных репозиториев
 git remote add site https://github.com... - добавление URL удаленного репозитория
 git push -u site master - выгрузка на удаленный репозиторий ветки master
 git clone https://github.com... - загрузка всего из удаленного репозитория
